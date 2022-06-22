@@ -28,9 +28,15 @@ class ToDoAppTests: XCTestCase {
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.
-        self.measure {
+       // self.measure {
             // Put the code you want to measure the time of here.
-        }
+       // }
+}
+    func testInitialViewControllerIsTaskListViewController() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let navigationController = storyboard.instantiateInitialViewController() as! UINavigationController
+        let rootViewController = navigationController.viewControllers.first as! TaskListViewController
+        
+        XCTAssertTrue(rootViewController is TaskListViewController)
     }
-
 }
