@@ -11,6 +11,7 @@ import XCTest
 class TaskListViewControllerTests: XCTestCase {
     var sut: TaskListViewController!
     override func setUpWithError() throws {
+        super.setUp()
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
          let vc = storyboard.instantiateViewController(withIdentifier: String(describing: TaskListViewController.self))
           sut = vc as? TaskListViewController
@@ -20,6 +21,7 @@ class TaskListViewControllerTests: XCTestCase {
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
+        super.tearDown()
     }
 
   
@@ -71,5 +73,43 @@ class TaskListViewControllerTests: XCTestCase {
         XCTAssertNotNil(sut.dataProvider.taskManager)
         XCTAssertTrue(newTaskViewController.taskManager === sut.dataProvider.taskManager)
     }
+    func testWhenViewAppearedTableViewRealoded() {
+        let mockTableView = MockTableView()
+        sut.tableView = mockTableView
+        
+        sut.beginAppearanceTransition(true, animated: true)
+        sut.endAppearanceTransition()
+        
+        XCTAssertTrue((sut.tableView as! MockTableView).isReloaded)
+    }
+    func testTappingCellSendsNotification() {
+        let task = Task(title: "Foo")
+        sut.dataProvider.taskManager!.add(task: task)
+        
+        expectation(forNotification: NSNotification.Name(rawValue: "DidSelectRow notification"), object: nil) { notification -> Bool in
+            
+            guard let taskFromNotification = notification.userInfo?["task"] as? Task else {
+                return false
+            }
+            
+            return task == taskFromNotification
+        }
+        
+        let tableView = sut.tableView
+        tableView?.delegate?.tableView!(tableView!, didSelectRowAt: IndexPath(row: 0, section: 0))
+        waitForExpectations(timeout: 1, handler: nil)
+    }
 }
+
+
+extension TaskListViewControllerTests {
+    class MockTableView: UITableView {
+        var isReloaded = false
+        override func reloadData() {
+            isReloaded = true
+        }
+    }
+}
+
+
 
