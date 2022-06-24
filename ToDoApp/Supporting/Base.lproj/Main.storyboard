@@ -133,6 +133,7 @@
                         <viewLayoutGuide key="safeArea" id="gsI-bN-uIF"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="esM-bP-dbe"/>
                     <connections>
                         <outlet property="dateLabel" destination="wLP-zA-eMh" id="ycK-7p-vh5"/>
                         <outlet property="descriptionLabel" destination="3Cd-cG-Dbi" id="0Ik-6Q-ZSe"/>
@@ -202,6 +203,7 @@
                         <viewLayoutGuide key="safeArea" id="0cR-CI-cik"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="7jR-V8-cdE"/>
                     <connections>
                         <outlet property="addressTextField" destination="PuD-5G-jjL" id="R5n-yT-tM3"/>
                         <outlet property="cancelButton" destination="1Jl-q9-Y63" id="r1m-sP-3sf"/>
