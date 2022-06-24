@@ -21,7 +21,7 @@ class TaskListViewController: UIViewController {
         super.viewDidLoad()
         let taskManager = TaskManager()
         dataProvider.taskManager = taskManager
-        
+    
         NotificationCenter.default.addObserver(self, selector: #selector(showDetail(withNotification:)), name: NSNotification.Name(rawValue: "DidSelectRow notification"), object: nil)
     
     }
@@ -29,6 +29,7 @@ class TaskListViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()
+        
     }
     @objc
     func showDetail(withNotification notification: Notification) {
