@@ -56,7 +56,7 @@ extension DataProvider:UITableViewDataSource {
         }
         
         
-        cell.configure(withTask: task)
+        cell.configure(withTask: task, done: task.isDone)
         
         return cell
     }

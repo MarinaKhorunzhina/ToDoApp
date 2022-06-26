@@ -18,7 +18,9 @@ class NewTaskViewController: UIViewController {
     
     @IBOutlet var saveButton: UIButton!
     @IBOutlet var cancelButton: UIButton!
-    
+    @IBAction func cancel () {
+        dismiss(animated: true, completion: nil)
+    }
     var taskManager: TaskManager!
     var geocoder = CLGeocoder()
     
