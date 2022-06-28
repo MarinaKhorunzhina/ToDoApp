@@ -26,7 +26,7 @@ class ToDoAppUITests: XCTestCase {
 
     func testExample() throws {
        // XCTAssertTrue(app.isOnMainView)
-        app.navigationBars["ToDoApp.TaskListView"].buttons["Add"].tap()
+                app.navigationBars["ToDoApp.TaskListView"].buttons["Add"].tap()
         app.textFields["Title"].tap()
         app.textFields["Title"].typeText("Foo")
         
